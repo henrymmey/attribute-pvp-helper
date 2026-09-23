@@ -1,160 +1,65 @@
-# Combat Assistant Mod
+# Attribute PVP Helper (Reforged)
 
-Advanced PvP combat helper for Minecraft 1.21.11 (Fabric)
+A client-side PvP helper for Minecraft 26.2 (Fabric). This is my own continuation of the original [Attribute PVP Helper](https://modrinth.com/project/D7LBHzLK) by ViratS-best, updated to Minecraft 26.2, Java 25 and renamed to `attribute-pvp-helper-reforged`.
+
+All features run locally on your client. The mod only registers a few no-op lifecycle hooks on the server side; it adds no new blocks, items or commands.
 
 ## Features
 
-### Damage Dealt Tracker
+- **Damage dealt tracker** – shows how much damage you dealt to a target in the action bar (red/yellow), tracks entities up to 30 blocks away, display lasts 3 seconds.
+- **Damage taken indicator** – shows how much damage you just took.
+- **Spear lunge helper** – tells you when a spear lunge is possible: charge meter (`Charge spear...`), missing momentum (`Move forward to lunge!`) or green `READY TO LUNGE` once all conditions are met.
+- **Attribute swap detection** – prints a confirmation when you swap weapons in your hotbar, e.g. `Swapped: Iron Sword → Diamond Sword`.
+- **Mace range helper** – while holding a mace, shows the distance to the nearest entity, e.g. `Mace Range: 4.2 blocks` (range: 10 blocks).
 
-Shows real-time damage dealt to enemies in the action bar. When you hit an entity, you'll see the exact amount of damage dealt displayed in red and yellow.
+## Requirements
 
-- Format: `Damage: 5.2`
-- Tracks up to 30 blocks away
-- Displays for 3 seconds after each hit
-
-### Damage Taken Indicator
-
-Displays damage you receive when hit by enemies. Helps you understand how much damage you're taking in combat.
-
-- Format: `Damage Taken: 3.5`
-- Shows for 3 seconds after each hit
-- Useful for assessing threat levels
-
-### Spear Combat Helper
-
-Provides real-time feedback on spear lunge conditions. The mod shows you exactly what conditions are needed to perform a successful lunge attack.
-
-Status messages:
-- `Charge spear...` - Charge your attack fully
-- `Move forward to lunge!` - You need forward momentum
-- `READY TO LUNGE` (green) - Optimal conditions met
-
-Lunge requirements:
-- Fully charged attack (90% or higher)
-- Moving forward
-- Airborne or falling (jumping helps)
-- Not in water
-
-### Weapon Swap Detection
-
-Confirms successful attribute swaps with a notification message. Shows what weapon you swapped from and to.
-
-- Format: `Swapped: Iron Sword to Diamond Sword`
-- Displays in green when swap is detected
-- Confirms equipment changes instantly
-
-### Mace Range Helper
-
-Displays the distance to the nearest entity when holding a mace. Helps you know if targets are within effective range.
-
-- Format: `Mace Range: 4.2 blocks`
-- Shows nearest entity distance
-- Updates in real-time
-
-### Server Optimization
-
-Network packet batching optimization for faster attribute swaps on multiplayer servers. Reduces latency and improves responsiveness during combat actions.
+- Minecraft **26.2**
+- Fabric Loader **0.19.5 or higher**
+- Fabric API **0.161.0 or higher**
+- Java **25**
 
 ## Installation
 
-1. Download modid-1.0.0.jar from the releases
-2. Place it in your .minecraft/mods/ folder
-3. Launch Minecraft with Fabric Loader installed
-4. All features will be enabled automatically
+1. Copy `attribute-pvp-helper-reforged-1.0.0.jar` into your `mods/` folder.
+2. Launch Minecraft with the Fabric profile.
+3. That's it – the helper runs entirely on your client, no server mod required.
 
-## Usage
+## Building from source
 
-Testing the mod in single player:
+I use the Gradle wrapper, no global Gradle needed:
 
-```
-gradlew runClient
-```
-
-Building the mod from source:
-
-```
-gradlew build
+```sh
+./gradlew build
 ```
 
-The compiled JAR will be created at: build/libs/modid-1.0.0.jar
+The finished jar ends up in `build/libs/attribute-pvp-helper-reforged-1.0.0.jar`.
 
-## PvP Combat Guide
+To launch a dev client (for testing in singleplayer):
 
-### Attribute Swapping
-
-Use your hotbar number keys (1-9) to quickly swap between weapons. The mod will confirm each swap with a notification message showing which weapon you switched to.
-
-- Press hotbar keys for instant swaps
-- Watch for the swap confirmation message
-- No cooldown between swaps
-- Swap while attacking for combo chains
-
-### Spear Lunge Technique
-
-To land consistent spear lunges:
-
-1. Jump first to guarantee you're airborne
-2. Charge your attack by holding the attack button
-3. Move forward while the attack is charging
-4. Watch for the green "READY TO LUNGE" message
-5. Release to execute the lunge
-
-### Reading Damage Numbers
-
-Monitor both damage dealt and damage taken to adjust your strategy:
-
-- High damage dealt: Your attacks are landing effectively
-- High damage taken: You may need better armor or healing
-- Track patterns to understand matchups
-
-### Mace Combat
-
-When using a mace:
-
-- Check the range indicator before attacking
-- Mace has good reach compared to swords
-- Sweep attacks hit multiple targets
-- Most effective at close to medium range
-
-## Technical Details
-
-Language: Java 21
-Minecraft Version: 1.21.11
-Fabric Loader: 0.18.2 or higher
-Fabric API: 0.139.4 or higher
-
-Main Components:
-- CombatAssistant.java - Main tick handler and event listener
-- SpearHelper.java - Spear lunge condition detection
-- DamageDealtTracker.java - Entity damage tracking
-- DamageIndicator.java - Damage display system
-- SpearOptimizationMixin.java - Server-side optimization mixin
-
-## Compatibility
-
-Works on multiplayer servers (no server mod required)
-Works in single player worlds
-Compatible with other Fabric mods
-No known conflicts
-
-## Building from Source
-
-Requirements:
-- Java 21 or higher
-- Gradle
-
-Build:
-```
-gradlew build
+```sh
+./gradlew runClient
 ```
 
-Run client:
-```
-gradlew runClient
-```
+## How it works (briefly)
 
-The mod uses Fabric Loom for development and Mixin for bytecode modifications.
+- `CombatAssistant` – the main tick handler (weapon swaps, mace range, damage taken).
+- `SpearHelper` – spear lunge condition checks.
+- `DamageDealtTracker` – tracks health changes of nearby entities to measure damage dealt.
+- `DamageIndicator` – buffers the last damage value for the action bar.
+- `Mixin` classes – only lifecycle hooks, no gameplay changes.
+
+## Known limitations
+
+- Damage values are derived from the entity health you can see locally. Absorbed damage and delayed server-side health updates can throw the numbers off slightly.
+- The mace range helper shows the nearest entity, not necessarily the one you are aiming at.
+
+## Credits
+
+Original mod by ViratS-best: [Attribute PVP Helper on Modrinth](https://modrinth.com/project/D7LBHzLK) – source on [GitHub](https://github.com/ViratS-best/HackCraft-Real).
+
+Maintained by henrymmey.
 
 ## License
 
-This mod is released under the CC0 license (public domain).
+MIT License. See [LICENSE](LICENSE).

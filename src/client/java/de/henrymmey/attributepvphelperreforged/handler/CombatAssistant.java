@@ -1,4 +1,4 @@
-package com.example.handler;
+package de.henrymmey.attributepvphelperreforged.handler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
@@ -53,7 +53,7 @@ public class CombatAssistant {
 			Component damageMsg = Component.literal("❤ Damage Taken: ")
 				.withStyle(ChatFormatting.RED)
 				.append(Component.literal(damageStr).withStyle(ChatFormatting.YELLOW));
-			player.displayClientMessage(damageMsg, true);
+			player.sendOverlayMessage(damageMsg);
 		}
 	}
 
@@ -68,7 +68,7 @@ public class CombatAssistant {
 				.append(Component.literal(" → ").withStyle(ChatFormatting.WHITE))
 				.append(Component.literal(toName).withStyle(ChatFormatting.GOLD));
 
-			player.displayClientMessage(feedback, true);
+			player.sendOverlayMessage(feedback);
 		}
 	}
 
@@ -99,7 +99,7 @@ public class CombatAssistant {
 				Component rangeInfo = Component.literal("⚔ Mace Range: ")
 					.withStyle(ChatFormatting.RED)
 					.append(Component.literal(displayDist + " blocks").withStyle(ChatFormatting.YELLOW));
-				player.displayClientMessage(rangeInfo, true);
+				player.sendOverlayMessage(rangeInfo);
 			}
 		}
 	}

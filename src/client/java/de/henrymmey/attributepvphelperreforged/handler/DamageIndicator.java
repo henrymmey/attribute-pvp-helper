@@ -1,4 +1,4 @@
-package com.example.handler;
+package de.henrymmey.attributepvphelperreforged.handler;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.ChatFormatting;
@@ -29,7 +29,7 @@ public class DamageIndicator {
 				.append(Component.literal(damageStr).withStyle(ChatFormatting.YELLOW))
 				.append(Component.literal(" ❤").withStyle(ChatFormatting.DARK_RED));
 			
-			player.displayClientMessage(damageMsg, true);
+			player.sendOverlayMessage(damageMsg);
 		} else if (now - lastDamageTime >= DAMAGE_DISPLAY_DURATION) {
 			lastDamageDealt = 0;
 		}
