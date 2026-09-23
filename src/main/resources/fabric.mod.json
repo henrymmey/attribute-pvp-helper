@@ -1,37 +1,32 @@
 {
-	"schemaVersion": 1,
-	"id": "attribute-pvp-helper-reforged",
-	"version": "${version}",
-	"name": "Combat Assistant",
-	"description": "Detects attribute swaps, shows mace range, and improves weapon combat feedback in servers.",
-	"authors": [
-		"Me!"
-	],
-	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
-	},
-	"license": "CC0-1.0",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"de.henrymmey.attributepvphelperreforged.SpearEnchantmentBooster"
-		],
-		"client": [
-			"de.henrymmey.attributepvphelperreforged.ExampleModClient"
-		]
-	},
-	"mixins": [
-		"attribute-pvp-helper-reforged.mixins.json",
-		{
-			"config": "attribute-pvp-helper-reforged.client.mixins.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.19.5",
-		"minecraft": "~26.2",
-		"java": ">=25",
-		"fabric-api": "*"
-	}
+  "schemaVersion": 1,
+  "id": "attribute-pvp-helper-reforged",
+  "version": "${version}",
+  "name": "Attribute PVP Helper Reforged",
+  "description": "Detects attribute swaps, shows mace range, and improves weapon combat feedback in servers.",
+  "authors": ["Henrymmey"],
+  "contact": {
+    "homepage": "https://gaming.henrymeyer.de/",
+    "sources": "https://github.com/henrymmey/attribute-pvp-helper"
+  },
+  "license": "MIT",
+  "icon": "assets/attribute-pvp-helper-reforged/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["de.henrymmey.attributepvphelperreforged.SpearEnchantmentBooster"],
+    "client": ["de.henrymmey.attributepvphelperreforged.ExampleModClient"]
+  },
+  "mixins": [
+    "attribute-pvp-helper-reforged.mixins.json",
+    {
+      "config": "attribute-pvp-helper-reforged.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-api": "*"
+  }
 }
