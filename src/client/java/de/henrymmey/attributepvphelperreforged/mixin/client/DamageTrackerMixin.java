@@ -1,4 +1,4 @@
-package com.example.mixin.client;
+package de.henrymmey.attributepvphelperreforged.mixin.client;
 
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import com.example.handler.DamageIndicator;
+import de.henrymmey.attributepvphelperreforged.handler.DamageIndicator;
 
 /**
  * Client-side: Track damage dealt when attacking entities

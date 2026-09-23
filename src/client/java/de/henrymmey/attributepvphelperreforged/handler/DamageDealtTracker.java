@@ -1,4 +1,4 @@
-package com.example.handler;
+package de.henrymmey.attributepvphelperreforged.handler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.LivingEntity;
@@ -57,7 +57,7 @@ public class DamageDealtTracker {
 				.withStyle(ChatFormatting.RED)
 				.append(Component.literal(damageStr).withStyle(ChatFormatting.YELLOW))
 				.append(Component.literal(" ❤").withStyle(ChatFormatting.DARK_RED));
-			player.displayClientMessage(damageMsg, true);
+			player.sendOverlayMessage(damageMsg);
 		}
 	}
 }

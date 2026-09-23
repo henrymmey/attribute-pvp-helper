@@ -1,4 +1,4 @@
-package com.example.handler;
+package de.henrymmey.attributepvphelperreforged.handler;
 
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -28,9 +28,8 @@ public class SpearHelper {
 		}
 
 		if (!status.isEmpty()) {
-			player.displayClientMessage(
-				Component.literal(status).withStyle(color),
-				true
+			player.sendOverlayMessage(
+				Component.literal(status).withStyle(color)
 			);
 		}
 	}

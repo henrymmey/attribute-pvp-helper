@@ -1,9 +1,9 @@
-package com.example;
+package de.henrymmey.attributepvphelperreforged;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.Minecraft;
-import com.example.handler.CombatAssistant;
+import de.henrymmey.attributepvphelperreforged.handler.CombatAssistant;
 
 public class ExampleModClient implements ClientModInitializer {
 	@Override
